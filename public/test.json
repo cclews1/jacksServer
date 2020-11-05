@@ -1,0 +1,32 @@
+{
+  "cars": [
+    {"id": 1,
+    "make": "Toyota",
+    "model": "Prius",
+    "year": 2001,
+    "price": 4500,
+    "images": [
+      "/img/C.png"
+    ]},
+    {
+      "id": 2,
+      "make": "Hyundai",
+      "model": "Sonata",
+      "year": 2010,
+      "price": 6000,
+      "images": [
+        "/img/C.png"
+      ]
+    },
+    {
+      "id": 3,
+      "make": "Nissan",
+      "model": "Sentra",
+      "year": 2015,
+      "price": 7200,
+      "images": [
+        "/img/C.png"
+      ]
+    }
+  ]
+}
