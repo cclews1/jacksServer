@@ -22,9 +22,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  wrapper: {
-    padding: '1rem 0',
-  },
   carousel: {
     position: 'relative',
     scrollBehavior: 'smooth',
@@ -141,7 +138,6 @@ export default function InventoryScroll() {
               View Entire Inventory
             </Button>
           </Link>
-          {/* <div style={{ height: '200vh' }}></div> */}
         </div>
       </MainWrapper>
     </>
