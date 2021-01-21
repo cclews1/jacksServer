@@ -30,13 +30,13 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonGridContainer: {
     [theme.breakpoints.down('md')]: {
-      marginBottom: '1rem'
-    }
+      marginBottom: '1rem',
+    },
   },
   gridContainer: {
     marginTop: 0,
-    marginBottom: 0
-  }
+    marginBottom: 0,
+  },
 }));
 
 export default function Hero() {
@@ -57,41 +57,41 @@ export default function Hero() {
   };
   return (
     <Paper className={classes.backgroundImage}>
-        <Grid
-          container
-          spacing={3}
-          alignItems='center'
-          justify='center'
-          color='secondary'
-          className={classes.gridContainer}
-        >
-          <Grid item xs={12} lg={6}>
-            <Container>
-              <Typography
-                align='center'
-                className={classes.whiteColor}
-                variant='h4'
-                style={{ fontWeight: 'bold' }}
-              >
-                Jacks Auto Sales has been putting drivers on the road all across
-                the Glen Burnie-Pasadena area for over 50 years.
-              </Typography>
-            </Container>
-          </Grid>
-          <Grid
-            item
-            container
-            spacing={5}
-            direction='column'
-            justify='space-around'
-            xs={12}
-            lg={3}
-            className={classes.buttonGridContainer}
-          >
-            <HeroButton endIcon={<CallIcon />}>Call Now</HeroButton>
-            <HeroButton endIcon={<RoomIcon />}>Find Us</HeroButton>
-          </Grid>
+      <Grid
+        container
+        spacing={3}
+        alignItems='center'
+        justify='center'
+        color='secondary'
+        className={classes.gridContainer}
+      >
+        <Grid item xs={12} lg={6}>
+          <Container>
+            <Typography
+              align='center'
+              className={classes.whiteColor}
+              variant='h4'
+              style={{ fontWeight: 'bold' }}
+            >
+              Jacks Auto Sales has been putting drivers on the road all across
+              the Glen Burnie-Pasadena area for over 50 years.
+            </Typography>
+          </Container>
         </Grid>
+        <Grid
+          item
+          container
+          spacing={5}
+          direction='column'
+          justify='space-around'
+          xs={12}
+          lg={3}
+          className={classes.buttonGridContainer}
+        >
+          <HeroButton endIcon={<CallIcon />}>Call Now</HeroButton>
+          <HeroButton endIcon={<RoomIcon />}>Find Us</HeroButton>
+        </Grid>
+      </Grid>
     </Paper>
   );
 }

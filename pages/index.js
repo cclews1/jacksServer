@@ -1,19 +1,23 @@
 import Header from '../src/components/Header';
+import BackgroundWrapper from '../src/components/BackgroundWrapper';
 import Hero from '../src/components/Hero';
 import Body from '../src/components/Body';
 import InventoryScroll from '../src/components/InventoryScroll/InventoryScroll';
-import { Toolbar, Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import Features from '../src/components/Features';
+import { Toolbar } from '@material-ui/core';
 
 export default function Index() {
   return (
     <>
-      <Header />
-      <Toolbar />
-      <Body>
-        <Hero />
-        <InventoryScroll />
-      </Body>
+      <BackgroundWrapper>
+        <Header />
+        <Toolbar />
+        <Body>
+          <Hero />
+          <InventoryScroll />
+          <Features />
+        </Body>
+      </BackgroundWrapper>
     </>
   );
 }
