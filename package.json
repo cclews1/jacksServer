@@ -2,19 +2,26 @@
   "name": "material-ui-next",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "function.js",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "firebase": "^8.2.9",
+    "firebase-admin": "^9.5.0",
+    "firebase-functions": "^3.13.2",
     "leaflet": "^1.7.1",
-    "next": "^9.4.4",
+    "next": "^10.0.5",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-firebase-hooks": "^2.2.0",
+    "react-leaflet": "^3.0.5"
   },
   "devDependencies": {},
   "scripts": {
     "dev": "next",
+    "build": "next build",
+    "start": "next start -p $PORT",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

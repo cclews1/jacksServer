@@ -1,25 +1,26 @@
-import Header from '../src/components/Header';
-import BackgroundWrapper from '../src/components/BackgroundWrapper';
+import PageTemplate from '../src/components/PageTemplate';
 import Hero from '../src/components/Hero';
-import Body from '../src/components/Body';
-import InventoryScroll from '../src/components/InventoryScroll/InventoryScroll';
+import InventoryScroll from '../src/components/InventoryScroll';
 import Contact from '../src/components/Contact';
 import Features from '../src/components/Features';
-import { Toolbar } from '@material-ui/core';
+import { getCars } from '../src/firebaseUtilities';
 
-export default function Index() {
+export default function Index({ data }) {
   return (
     <>
-      <BackgroundWrapper>
-        <Header />
-        <Toolbar />
-        <Body>
-          <Hero />
-          <InventoryScroll />
-          <Features />
-          <Contact />
-        </Body>
-      </BackgroundWrapper>
+      <PageTemplate>
+        <Hero />
+        <InventoryScroll data={data} />
+        <Features />
+        <Contact />
+      </PageTemplate>
     </>
   );
+}
+
+export async function getServerSideProps(ctx) {
+  const data = await getCars();
+  return {
+    props: { data },
+  };
 }

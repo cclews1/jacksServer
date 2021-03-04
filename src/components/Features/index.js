@@ -41,7 +41,7 @@ export default function Features() {
             <FeatureCard
               icon='build_circle'
               heading='Onsite Mechanics'
-              subheading='We work on our own cars so we know everything is in order when you drive it off the lot.'
+              subheading='We maintain our own vehicles so we know everything is in order when you drive off the lot.'
             />
             <FeatureCard
               icon='monetization_on'

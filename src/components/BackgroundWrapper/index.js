@@ -1,14 +1,15 @@
 import { makeStyles } from '@material-ui/core';
 
-const backgroundImage =
-  'https://www.transparenttextures.com/patterns/3px-tile.png';
-
 const useStyles = makeStyles((theme) => ({
   bgWrapper: {
     'background-color': theme.palette.secondary.light,
-    'background-image': `url(${backgroundImage})`,
-    width: '100%',
-    height: '100%',
+    'background-image': "url('/img/3px-tile.png')",
+    maxWidth: '100%',
+    maxHeight: '100%',
+    minHeight: '100vh',
+    scrollBehavior: 'smooth',
+    display: 'flex',
+    flexDirection: 'column',
   },
 }));
 

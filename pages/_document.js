@@ -6,7 +6,7 @@ import theme from '../src/theme';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang='en'>
+      <Html lang='en' style={{ scrollBehavior: 'smooth' }}>
         <Head>
           {/* PWA primary color */}
           <meta name='theme-color' content={theme.palette.primary.main} />
@@ -22,6 +22,35 @@ export default class MyDocument extends Document {
             rel='stylesheet'
             href='https://fonts.googleapis.com/icon?family=Material+Icons'
           />
+          <link
+            rel='stylesheet'
+            href='https://unpkg.com/leaflet@1.7.1/dist/leaflet.css'
+            integrity='sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=='
+            crossOrigin=''
+          />
+          <link
+            rel='apple-touch-icon'
+            sizes='180x180'
+            href='/apple-touch-icon.png'
+          />
+          <link
+            rel='icon'
+            type='image/png'
+            sizes='32x32'
+            href='/favicon-32x32.png'
+          />
+          <link
+            rel='icon'
+            type='image/png'
+            sizes='16x16'
+            href='/favicon-16x16.png'
+          />
+          <link rel='manifest' href='/site.webmanifest' />
+          <script
+            src='https://unpkg.com/leaflet@1.7.1/dist/leaflet.js'
+            integrity='sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=='
+            crossOrigin=''
+          ></script>
         </Head>
         <body>
           <Main />

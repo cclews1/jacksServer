@@ -3,36 +3,36 @@ import { Grid, Container, makeStyles, Card } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    marginTop: '20px',
+    display: 'flex',
+    flex: '1',
+    paddingBottom: '0.5rem',
   },
-  gridContainer: {
-    position: 'relative',
-    left: 0,
-    right: 0,
+  sectionContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+  },
+  item: {
+    margin: '0.5rem 0',
   },
 }));
-export default function Body(props) {
-  const [cars, setCars] = useState([]);
-
+export default function Body({ children }) {
   const classes = useStyles();
   return (
     <>
-      <div className={classes.wrapper}>
-        <Container maxWidth='lg' className={classes.container}>
-          <Grid
-            container
-            direction='column'
-            className={classes.gridContainer}
-            spacing={3}
-          >
-            {props.children.map((child, i) => (
-              <Grid key={i} item>
+      <Container maxWidth='lg' className={classes.container}>
+        <div className={classes.sectionContainer}>
+          {children.length ? (
+            children.map((child, i) => (
+              <div key={i} className={classes.item}>
                 {child}
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </div>
+              </div>
+            ))
+          ) : (
+            <div className={classes.item}>{children} </div>
+          )}
+        </div>
+      </Container>
     </>
   );
 }

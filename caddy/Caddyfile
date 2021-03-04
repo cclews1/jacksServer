@@ -1,0 +1,7 @@
+{$MY_DOMAIN} {
+  reverse_proxy nextjs:3000
+}
+
+api.{$MY_DOMAIN} {
+  reverse_proxy admin:5000
+}

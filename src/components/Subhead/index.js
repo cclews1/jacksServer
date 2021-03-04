@@ -3,9 +3,12 @@ import { makeStyles, Typography } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   header: {
     textAlign: 'center',
-    // marginTop: theme.spacing(2),
     fontFamily: 'Roboto Slab, serif',
     fontWeight: 300,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.6rem',
+      fontWeight: 500,
+    },
   },
 }));
 

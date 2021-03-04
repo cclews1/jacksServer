@@ -1,5 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { yellow, grey, blue } from '@material-ui/core/colors';
+import { yellow, grey, red } from '@material-ui/core/colors';
 
 // Create a theme instance.
 const theme = createMuiTheme({
@@ -8,7 +8,7 @@ const theme = createMuiTheme({
       main: yellow[500],
     },
     secondary: {
-      main: grey[600],
+      main: grey[300],
     },
     background: {
       default: '#fff',
@@ -16,6 +16,9 @@ const theme = createMuiTheme({
     white: {
       main: grey[100],
     },
+  },
+  typography: {
+    jackFont: 'Roboto Slab, serif',
   },
 });
 

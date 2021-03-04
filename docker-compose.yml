@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  nextjs:
+    build: ./
+    hostname: nextjs
+    restart: unless-stopped
+    environment:
+      - PORT=3000
+  caddy:
+    image: caddy
+    hostname: caddy
+    restart: unless-stopped
+    environment:
+      - MY_DOMAIN=45.63.19.3
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy/data:/data
+      - ./caddy/config:/config
+  admin:
+    image: codyclews/jacksadmin
+    hostname: admin
+    restart: unless-stopped

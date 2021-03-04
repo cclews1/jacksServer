@@ -11,7 +11,7 @@ import {
   CardMedia,
   Typography,
 } from '@material-ui/core';
-import { ArrowForward as ArrowForwardIcon } from '@material-ui/icons';
+import { ArrowForward as ArrowForwardIcon, SkipNext } from '@material-ui/icons';
 import Subhead from '../Subhead';
 import MainWrapper from '../MainWrapper';
 
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   carousel: {
     position: 'relative',
     scrollBehavior: 'smooth',
-    width: 'calc(100vw - 28px)',
+    width: '100%',
     textAlign: 'center',
     maxWidth: theme.breakpoints.values.md,
     display: 'block',
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cardContainer: {
     display: 'inline-block',
-    margin: 'auto',
+    margin: '1rem',
   },
   cardRoot: {
     display: 'inline-block',
@@ -74,6 +74,17 @@ const useStyles = makeStyles((theme) => ({
     transform: 'rotate(180deg)',
     '-ms-transform': 'rotate(180deg)',
   },
+  priceContainer: {
+    backgroundColor: theme.palette.secondary.main,
+    opacity: 0.75,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    borderRadius: theme.shape.borderRadius,
+  },
+  price: {
+    // display: 'absolute',
+  },
   iconButtonRight: {
     right: '50px',
     top: '130px',
@@ -83,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function InventoryScroll() {
+export default function InventoryScroll({ data }) {
   function scroll(direction) {
     let scroll;
     let distance = 516;
@@ -116,16 +127,9 @@ export default function InventoryScroll() {
           </Hidden>
           <div className={classes.carousel} id='carousel'>
             <div className={classes.cardContainer}>
-              <CarCard></CarCard>
-              <CarCard></CarCard>
-              <CarCard></CarCard>
-              <CarCard></CarCard>
-              <CarCard></CarCard>
-              <CarCard></CarCard>
-              <CarCard></CarCard>
-              <CarCard></CarCard>
-              <CarCard></CarCard>
-              <CarCard></CarCard>
+              {data.map((car) => {
+                return <CarCard car={car} key={car.id} />;
+              })}
             </div>
           </div>
           <Link href='/inventory'>
@@ -144,23 +148,43 @@ export default function InventoryScroll() {
   );
 }
 
-const CarCard = () => {
+const CarCard = ({ car }) => {
   const classes = useStyles();
+  let img;
+  if ('images' in car) {
+    img = car.images[0];
+  } else {
+    img = '/img/Optimized-no-image.png';
+  }
+
   return (
     <Card className={classes.cardRoot}>
-      <CardActionArea>
-        <CardMedia className={classes.media} image='/img/b.jpg' />
-        <CardContent>
-          <Typography
-            className={classes.cardText}
-            variant='h6'
-            noWrap
-            component='h2'
-          >
-            2011 Toyota Corolla
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <Link href={`/inventory/${car.id}`}>
+        <CardActionArea>
+          <CardMedia className={classes.media} image={img}>
+            <div className={classes.priceContainer}>
+              <Typography variant='h6' className={classes.price}>
+                {parseInt(car.price).toLocaleString('en-US', {
+                  style: 'currency',
+                  currency: 'USD',
+                  minimumFractionDigits: 0,
+                  maximumFractionDigits: 0,
+                })}
+              </Typography>
+            </div>
+          </CardMedia>
+          <CardContent className={classes.cardContent}>
+            <Typography
+              className={classes.cardText}
+              variant='h5'
+              noWrap
+              component='h2'
+            >
+              {car.year} {car.make} {car.model}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Link>
     </Card>
   );
 };
