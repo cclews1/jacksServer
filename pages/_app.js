@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
+  const router = useRouter();
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -14,6 +16,13 @@ export default function MyApp(props) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
+
+    router.events.on('routeChangeComplete', () => {
+      window.scroll({
+        top: 0,
+        behavior: 'smooth',
+      });
+    });
   }, []);
 
   return (
