@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PageTemplate from '../../src/components/PageTemplate';
 import { getCar } from '../../src/firebaseUtilities';
 import ErrorPage from 'next/error';
@@ -15,6 +15,7 @@ import {
 import { NavigateNext, Speed } from '@material-ui/icons';
 import ShareComponent from '../../src/components/ShareComponent';
 import Contact from '../../src/components/Contact';
+import { SizeMe } from 'react-sizeme';
 
 function selectorCommon(theme) {
   return {
@@ -195,10 +196,19 @@ function CarExistsPage({ car }) {
                 setCurrentImage={setCurrentImage}
                 images={car.images}
               />
-              <CardMedia
-                image={car.images[currentImage]}
-                className={classes.media}
-              />
+              <SizeMe>
+                {({ size }) => {
+                  return (
+                    <CardMedia
+                      style={{
+                        height: `${size.width * 0.66}px`,
+                      }}
+                      image={car.images[currentImage]}
+                      className={classes.media}
+                    />
+                  );
+                }}
+              </SizeMe>
             </div>
           ) : null}
           <CardContent className={classes.content}>
@@ -274,6 +284,7 @@ export async function getServerSideProps(ctx) {
 
 function ImageSelector({ images, setCurrentImage, currentImage }) {
   const classes = useStyles();
+
   return (
     <div className={classes.imageSelect}>
       {images.map((image, i) => {

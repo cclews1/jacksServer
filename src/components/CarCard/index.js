@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   Card,
   CardActionArea,
@@ -13,6 +13,7 @@ import {
 import { Speed, ExpandMoreRounded } from '@material-ui/icons';
 import ShareComponent from '../../components/ShareComponent';
 import Link from 'next/link';
+import { SizeMe } from 'react-sizeme';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -41,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
   },
   media: {
-    height: '10rem',
+    // height: '10rem',
     [theme.breakpoints.up('sm')]: {
       width: '12rem',
       height: '8rem',
@@ -113,6 +114,7 @@ const useStyles = makeStyles((theme) => ({
 const CarCard = ({ car }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [imgHeight, setImgHeight] = useState();
 
   function handleExpandClick() {
     setOpen(!open);
@@ -129,12 +131,23 @@ const CarCard = ({ car }) => {
                   1 / {car.images.length}
                 </Typography>
               )}
-              <CardMedia
-                className={classes.media}
-                image={
-                  car.images ? car.images[0] : '/img/Optimized-no-image.png'
-                }
-              />
+              <SizeMe>
+                {({ size }) => {
+                  return (
+                    <CardMedia
+                      style={{
+                        height: `${0.66 * size.width}px`,
+                      }}
+                      className={classes.media}
+                      image={
+                        car.images
+                          ? car.images[0]
+                          : '/img/Optimized-no-image.png'
+                      }
+                    />
+                  );
+                }}
+              </SizeMe>
             </div>
             <CardContent className={classes.content}>
               <Typography className={classes.cardText} variant='h6' noWrap>

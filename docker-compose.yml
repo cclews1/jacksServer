@@ -20,6 +20,6 @@ services:
       - ./caddy/data:/data
       - ./caddy/config:/config
   admin:
-    image: codyclews/jacksadmin
+    image: codyclews/jacksadmin:latest
     hostname: admin
     restart: unless-stopped
