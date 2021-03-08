@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
     // borderBottomRightRadius: 0,
     margin: '0.25rem',
     padding: '0 0.25rem',
+    zIndex: 500,
   },
   actionArea: {
     display: 'flex',
