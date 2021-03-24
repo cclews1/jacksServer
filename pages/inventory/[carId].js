@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import PageTemplate from '../../src/components/PageTemplate';
 import { getCar } from '../../src/firebaseUtilities';
 import ErrorPage from 'next/error';
+import Head from 'next/head';
 import {
   CardContent,
   CardMedia,
@@ -179,89 +180,100 @@ function CarExistsPage({ car }) {
   }, [currentImage]);
 
   return (
-    <PageTemplate>
-      <div className={classes.root}>
-        <Card className={classes.card}>
-          {car.images ? (
-            <div style={{ position: 'relative' }}>
-              <NavButton
-                direction='left'
-                currentImage={currentImage}
-                setCurrentImage={setCurrentImage}
-                images={car.images}
-              />
-              <NavButton
-                direction='right'
-                currentImage={currentImage}
-                setCurrentImage={setCurrentImage}
-                images={car.images}
-              />
-              <SizeMe>
-                {({ size }) => {
-                  return (
-                    <CardMedia
-                      style={{
-                        height: `${size.width * 0.66}px`,
-                      }}
-                      image={car.images[currentImage]}
-                      className={classes.media}
-                    />
-                  );
-                }}
-              </SizeMe>
-            </div>
-          ) : null}
-          <CardContent className={classes.content}>
+    <>
+      <Head>
+        <meta
+          property='og:title'
+          content={`${car.year} ${car.make} ${car.model}`}
+        />
+        {car.images ? (
+          <meta property='og:image' content={car.images[0]} />
+        ) : null}
+      </Head>
+      <PageTemplate>
+        <div className={classes.root}>
+          <Card className={classes.card}>
             {car.images ? (
-              <ImageSelector
-                images={car.images}
-                setCurrentImage={setCurrentImage}
-                currentImage={currentImage}
-              />
+              <div style={{ position: 'relative' }}>
+                <NavButton
+                  direction='left'
+                  currentImage={currentImage}
+                  setCurrentImage={setCurrentImage}
+                  images={car.images}
+                />
+                <NavButton
+                  direction='right'
+                  currentImage={currentImage}
+                  setCurrentImage={setCurrentImage}
+                  images={car.images}
+                />
+                <SizeMe>
+                  {({ size }) => {
+                    return (
+                      <CardMedia
+                        style={{
+                          height: `${size.width * 0.66}px`,
+                        }}
+                        image={car.images[currentImage]}
+                        className={classes.media}
+                      />
+                    );
+                  }}
+                </SizeMe>
+              </div>
             ) : null}
-            <div className={classes.subContent}>
-              <div className={classes.subContent__dataDisplay}>
-                <Typography variant='h5' className={classes.carName}>
-                  {car.year} {car.make} {car.model}
-                </Typography>
-                <div className={classes.carInfo}>
-                  {car.price ? (
-                    <Typography variant='h5' className={classes.price}>
-                      {'$' +
-                        parseInt(car.price).toLocaleString('en-us', {
-                          maximumFractionDigits: 0,
-                        })}
-                    </Typography>
-                  ) : null}
-                  <div className={classes.mileage}>
-                    <Speed className={classes.speedIcon} />
-                    {car.miles ? (
-                      <Typography variant='h5'>
-                        {parseInt(car.miles).toLocaleString('en-us', {
-                          maximumFractionDigits: 0,
-                        }) + ' mi.'}
+            <CardContent className={classes.content}>
+              {car.images ? (
+                <ImageSelector
+                  images={car.images}
+                  setCurrentImage={setCurrentImage}
+                  currentImage={currentImage}
+                />
+              ) : null}
+              <div className={classes.subContent}>
+                <div className={classes.subContent__dataDisplay}>
+                  <Typography variant='h5' className={classes.carName}>
+                    {car.year} {car.make} {car.model}
+                  </Typography>
+                  <div className={classes.carInfo}>
+                    {car.price ? (
+                      <Typography variant='h5' className={classes.price}>
+                        {'$' +
+                          parseInt(car.price).toLocaleString('en-us', {
+                            maximumFractionDigits: 0,
+                          })}
                       </Typography>
                     ) : null}
+                    <div className={classes.mileage}>
+                      <Speed className={classes.speedIcon} />
+                      {car.miles ? (
+                        <Typography variant='h5'>
+                          {parseInt(car.miles).toLocaleString('en-us', {
+                            maximumFractionDigits: 0,
+                          }) + ' mi.'}
+                        </Typography>
+                      ) : null}
+                    </div>
                   </div>
+                  {car.description ? (
+                    <>
+                      <Typography variant='h6'>Description:</Typography>
+                      <Typography variant='body1'>{car.description}</Typography>
+                    </>
+                  ) : null}
                 </div>
-                {car.description ? (
-                  <>
-                    <Typography variant='h6'>Description:</Typography>
-                    <Typography variant='body1'>{car.description}</Typography>
-                  </>
-                ) : null}
+                <CardActions className={classes.cardActions} disableSpacing>
+                  <ShareComponent car={car} />
+                </CardActions>
               </div>
-              <CardActions className={classes.cardActions} disableSpacing>
-                <ShareComponent car={car} />
-              </CardActions>
-            </div>
-          </CardContent>
-        </Card>
-        <div className={classes.contactWrap}>
-          <Contact />
+            </CardContent>
+          </Card>
+          <div className={classes.contactWrap}>
+            <Contact />
+          </div>
         </div>
-      </div>
-    </PageTemplate>
+      </PageTemplate>
+    </>
   );
 }
 
